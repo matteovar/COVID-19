@@ -66,7 +66,6 @@ def show_pandemic():
     total_confirmed["Dates"] = pd.to_datetime(total_confirmed["Dates"])
     total_confirmed = total_confirmed.sort_values(by="Dates")
 
-    # Aggregate deaths
     total_deaths = get_group_agg(
         df=df_deaths, group_col="Dates", agg_col="Deaths", agg_type="sum"
     )
@@ -75,6 +74,7 @@ def show_pandemic():
     total_deaths = total_deaths.sort_values(by="Dates")
 
     merged_df = pd.merge(total_confirmed, total_deaths, on="Dates", how="inner")
+    
 
     st.markdown(
         """ 

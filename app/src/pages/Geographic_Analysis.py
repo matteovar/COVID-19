@@ -35,8 +35,19 @@ def show_geo():
         .head(10)
     )
 
-    st.dataframe(nao_sei)
-    bar(df=nao_sei, x="Country/Region", y="Confirmed")
+    
+    specific_date_deaths = df_deaths[df_deaths["Dates"] == "5/29/21"]
+    date_deaths = (
+        get_group_agg(
+            df=specific_date_deaths,
+            group_col="Country/Region",
+            agg_col="Deaths",
+            agg_type="sum",
+        ).sort_values("Deaths", ascending=False)
+        .head(10)
+    )
 
+    merge = nao_sei.merge(date_deaths, left_on='Country/Region', right_on="Country/Region")
+    bar(df=merge, x = "Country/Region", y="Deaths", color="Confirmed",x_label="Country", y_label="Deaths", title="Top 10 Countries - Confirmed vs Deaths (05/29/21)")
 
 show_geo()

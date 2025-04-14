@@ -13,6 +13,7 @@ def bar(
     x_label: str = None,
     y_label: str = None,
     color_label: str = None,
+    barmode: str = None, 
 ):
     labels = {x: x_label if x_label else x, y: y_label if y_label else y}
     if color and color_label:
@@ -25,5 +26,6 @@ def bar(
         color=color,
         orientation=orientation,
         labels=labels,
+        barmode = barmode,
     )
     st.plotly_chart(bar_view)
