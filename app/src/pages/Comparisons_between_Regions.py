@@ -1,8 +1,8 @@
-import streamlit as st
-import pandas as pd
 import country_converter as coco  # Importando o conversor
+import pandas as pd
+import streamlit as st
+from src.main import df_confirmed, df_deaths, df_recovered, get_group_agg, vaccinated
 from src.utils.plotyly_chats.bar_chart import bar
-from src.main import df_confirmed, df_deaths, get_group_agg, df_recovered, vaccinated
 
 
 def padronizar_paises(df, coluna_original, nova_coluna="country"):
@@ -81,7 +81,8 @@ def show_cbr():
         y=["Vaccination", "Recovered", "Deaths", "Confirmed"],
         title="Comparação entre Regiões",
         x_label="Country",
-        y_label="Values"
+        y_label="Values",
+        log_y=True,
     )
 
 

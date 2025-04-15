@@ -12,6 +12,7 @@ from src.main import (
     vaccinated,
 )
 from src.utils.cards import create_cards
+from src.utils.plotyly_chats.line_chart import line
 
 
 def show_pandemic():
@@ -74,19 +75,20 @@ def show_pandemic():
     total_deaths = total_deaths.sort_values(by="Dates")
 
     merged_df = pd.merge(total_confirmed, total_deaths, on="Dates", how="inner")
-    
 
     st.markdown(
         """ 
                 #### Confirmed Cases compared to Deaths
                 """
     )
-    st.line_chart(
-        merged_df,
+    line(
+        df=merged_df,
         x="Dates",
         y=["Confirmed", "Deaths"],
-        y_label="Person",
-        x_label="Date",
+        y_title="Person",
+        x_title="Date",
+        log_y=True,
+        title="#### Confirmed Cases compared to Deaths",
     )
 
 
