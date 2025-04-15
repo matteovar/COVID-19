@@ -1,16 +1,11 @@
-import pandas as pd
 import streamlit as st
+from src.utils.plotyly_chats.maps import mapa
 from src.main import (
-    confirmed,
-    deaths,
     df_confirmed,
     df_deaths,
-    get_data_agg,
     get_group_agg,
-    recovered,
-    vaccinated,
 )
-from src.utils.plotyly_chats.bar_chart import bar
+
 
 
 def show_geo():
@@ -32,7 +27,7 @@ def show_geo():
             agg_type="sum",
         )
         .sort_values("Confirmed", ascending=False)
-        .head(10)
+
     )
 
     
@@ -44,10 +39,12 @@ def show_geo():
             agg_col="Deaths",
             agg_type="sum",
         ).sort_values("Deaths", ascending=False)
-        .head(10)
+
     )
 
     merge = nao_sei.merge(date_deaths, left_on='Country/Region', right_on="Country/Region")
-    bar(df=merge, x = "Country/Region", y="Deaths", color="Confirmed",x_label="Country", y_label="Deaths", title="Top 10 Countries - Confirmed vs Deaths (05/29/21)")
+    
+    mapa(df=merge, location="Country/Region", locationmode="country names", color="Deaths", hover_name="Country/Region", hover_data={"Confirmed": True},color_continuous_scale="blues", title="Top 10 Countries - Confirmed vs Deaths (05/29/21)")
 
+    
 show_geo()

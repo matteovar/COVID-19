@@ -22,6 +22,14 @@ df_deaths = pd.melt(
     value_name="Deaths",
 )
 
+df_recovered = pd.melt(
+    recovered,
+    id_vars=["Province/State", "Country/Region", "Lat", "Long"],
+    value_vars=dates(),
+    var_name="Dates",
+    value_name="Recovered",
+)
+
 
 def get_data_agg(df: pd.DataFrame, column_name: str, agg_type: str = None):
     return df[column_name].agg(agg_type)

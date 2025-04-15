@@ -10,6 +10,7 @@ def main():
         "Pages": [
             st.Page("src/pages/Vision_on_Pandemic.py", title="Pandemic Overview"),
             st.Page("src/pages/Geographic_Analysis.py", title="Geographic Analysis"),
+            st.Page("src/pages/Comparisons_between_Regions.py", title="Comparisons between Regions")
         ],
     }
 
