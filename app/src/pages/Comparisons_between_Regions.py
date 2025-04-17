@@ -1,14 +1,43 @@
-import country_converter as coco  # Importando o conversor
+import io
+import sys
+
+import country_converter as coco
 import pandas as pd
 import streamlit as st
 from src.main import df_confirmed, df_deaths, df_recovered, get_group_agg, vaccinated
 from src.utils.plotyly_chats.bar_chart import bar
 
+# Dicionário de mapeamento manual para casos especiais
+SPECIAL_CASES = {
+    "Scotland": None,
+    "Wales": None,
+    "Northern Ireland": None,
+    "Diamond Princess": None,  # Será removido
+    "MS Zaandam": None,  # Será removido
+    "Timor": "Timor-Leste",  # Corrige para o nome padrão
+    "West Bank and Gaza": "Palestine",
+    "Taiwan*": "Taiwan",
+    "Burma": "Myanmar",
+    "Cabo Verde": "Cape Verde",
+    "Congo (Brazzaville)": "Congo",
+    "Congo (Kinshasa)": "Democratic Republic of the Congo",
+    "Korea, South": "South Korea",
+    "US": "United States",
+}
+
 
 def padronizar_paises(df, coluna_original, nova_coluna="country"):
+    # Temporarily redirect stderr to suppress warnings
+    old_stderr = sys.stderr
+    sys.stderr = io.StringIO()  # Redirect to a dummy stream
+
     cc = coco.CountryConverter()
     df[nova_coluna] = cc.convert(df[coluna_original], to="name_short", not_found=None)
-    df = df.dropna(subset=[nova_coluna])  # Remove os que não foram encontrados
+
+    # Restore stderr
+    sys.stderr = old_stderr
+
+    df = df.dropna(subset=[nova_coluna])  # Remove rows where country wasn't recognized
     return df
 
 
