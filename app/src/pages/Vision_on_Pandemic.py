@@ -36,10 +36,7 @@ def display_title():
 
 def get_vaccinated_filtered_df():
     vaccinated["date"] = pd.to_datetime(vaccinated["date"], format="%Y-%m-%d")
-    return vaccinated[
-        (vaccinated["date"] >= pd.to_datetime("2020-12-01"))
-        & (vaccinated["date"] <= pd.to_datetime("2021-05-29"))
-    ]
+    return vaccinated[(vaccinated["date"] <= pd.to_datetime("2021-05-29"))]
 
 
 def display_summary_cards(filtered_df):
