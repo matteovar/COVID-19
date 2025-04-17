@@ -1,37 +1,52 @@
-# 🏦 Market Sales Dashboard
+# 📊 Interactive COVID-19 Dashboard
 
-An interactive dashboard built with Python, Pandas, and Streamlit for analyzing retail sales data. The project provides insights into product performance, customer behavior, sales channels, discount strategies, and returns.
+This project is an interactive application developed with **Streamlit** to analyze, visualize, and predict the evolution of the COVID-19 pandemic based on historical data. The platform allows visualization of graphs, key metrics, country comparisons, and simulations of future scenarios.
 
-## 📊 Features
+## 🌐 Features
 
-- Time-series analysis of sales trends
-- KPIs: Total Revenue, Average Ticket, Top-Selling Products
-- Discount vs. Sales Quantity relationship
-- Customer behavior by age, gender, and loyalty status
-- Multi-page navigation via Streamlit
+### 1. Overview
+- Display of global pandemic metrics: confirmed cases, deaths, recoveries, and vaccinations.
+- Interactive chart for trend analysis.
 
-## 🚀 Getting Started
+### 2. Country Comparisons
+- Interactive map to compare specific data.
+- Visualization of case curves, deaths, and vaccinations.
 
-1. [Streamlit link](https://market-sales.streamlit.app)
+### 3. Vaccination and Effects
+- Analysis of the relationship between vaccination rates and mortality, recovery, and confirmed cases.
+- Correlational graphs and data-driven explanations.
 
-## 📂 Expected Data Format
+### 4. Future Predictions
+- Comparative chart between deaths and recoveries.
+- DataFrames showing countries with the highest and lowest number of deaths.
 
-The CSV file should contain the following columns:
+## 🗏 Streamlit Page
 
-TransactionID, ProductID, ProductName, ProductCategory, SalesQuantity, SalesPrice, DiscountAmount, FinalSalePrice, TransactionDate, TimeOfDay, SalesChannel, PaymentMethod, PaymentStatus, TransactionStatus, CustomerID, CustomerAge, CustomerGender, CustomerLocation, LoyaltyProgramMember, CustomerFeedbackRating, ReturnFlag, ReturnReason, StoreLocation, Region, PromoCodeUsed, DiscountPercentage, ShippingMethod, ShippingFee, ShippingStatus, SalesTax, CrossSellProducts, UpsellProducts
+- [Streamlit](https://covid-19-info.streamlit.app/)
 
-[Access to Dataset](https://www.kaggle.com/datasets/harinkl/sales-data)
+## 📈 Datasets Used
 
-## 📈 Sample Visualizations
+- [Vaccination](https://www.kaggle.com/code/dwin183287/covid-19-world-vaccination?select=country_vaccinations.csv)  
+- [Confirmed Cases](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset?select=time_series_covid_19_confirmed.csv)  
+- [Deaths](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset?select=time_series_covid_19_deaths.csv)  
+- [Recovery](https://www.kaggle.com/datasets/sudalairajkumar/novel-corona-virus-2019-dataset?select=time_series_covid_19_recovered.csv)  
 
-- Scatter plot: Discount % vs Final Sale Price (with quantity size)
-- Bar chart: Top 10 selling products
-- Line chart: Sales trend over time
-- KPIs: Total revenue, ticket size, return rate
+## 🧠 Technologies Used
 
-## ⚖️ Technologies Used
+- [Streamlit](https://streamlit.io/)
+- [Pandas](https://pandas.pydata.org/)
+- [Matplotlib](https://matplotlib.org/)
+- [Millify](https://github.com/azaitsev/millify)
+- [Plotly](https://plotly.com/)
 
-- Python 3.10+
-- pandas
-- streamlit
-- plotly
+## 🧑‍💻 Author
+
+**Matteo Domiciano Varnier**  
+Computer Science Student at Universidade Presbiteriana Mackenzie  
+São Paulo - Brazil
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
