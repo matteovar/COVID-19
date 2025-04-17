@@ -1,6 +1,7 @@
 import pandas as pd
 import streamlit as st
 from src.main import df_deaths, df_recovered, get_group_agg
+from src.utils.merge import merge_data
 from src.utils.plotyly_chats.scatter_chart import scatter
 
 
@@ -15,7 +16,7 @@ def load_and_prepare_data(date_str="2021-05-29"):
     top_recover = get_group_agg(recover_on_date, "Country/Region", "Recovered", "sum")
     top_recover = top_recover.sort_values("Recovered", ascending=False)
 
-    merged_df = top_deaths.merge(top_recover, on="Country/Region")
+    merged_df = merge_data(df1=top_deaths, df2=top_recover, on="Country/Region")
     return merged_df, top_deaths
 
 
@@ -26,6 +27,9 @@ def plot_scatter(df):
         y=["Deaths", "Recovered"],
         log_y=True,
         color_sequence=["crimson", "seagreen"],
+        x_label="Country",
+        y_label="Values",
+        color_label="Type",
     )
 
 

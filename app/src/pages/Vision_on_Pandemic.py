@@ -12,6 +12,7 @@ from src.main import (
     vaccinated,
 )
 from src.utils.cards import create_cards
+from src.utils.merge import merge_data
 from src.utils.plotyly_chats.line_chart import line
 
 
@@ -83,8 +84,9 @@ def display_line_chart():
 
     total_deaths = total_deaths.sort_values(by="Dates")
 
-    merged_df = pd.merge(total_confirmed, total_deaths, on="Dates", how="inner")
-
+    merged_df = merge_data(
+        df1=total_confirmed, df2=total_deaths, on="Dates", how="inner"
+    )
     line(
         df=merged_df,
         x="Dates",

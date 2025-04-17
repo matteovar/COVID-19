@@ -5,6 +5,7 @@ import country_converter as coco
 import pandas as pd
 import streamlit as st
 from src.main import df_confirmed, df_deaths, df_recovered, get_group_agg, vaccinated
+from src.utils.merge import merge_data
 from src.utils.plotyly_chats.bar_chart import bar
 
 # Dicionário de mapeamento manual para casos especiais
@@ -91,10 +92,12 @@ def show_cbr():
     date_vaccinated = padronizar_paises(date_vaccinated, "country")
 
     # Merges
-    merge = specfic_confirmed.merge(date_deaths, on="country")
-    merge_final = merge.merge(date_recovered, on="country")
+    merge = merge_data(df1=specfic_confirmed, df2=date_deaths, on="country")
+    merge_final = merge_data(df1=merge, df2=date_recovered, on="country")
 
-    merged_df = pd.merge(date_vaccinated, merge_final, on="country", how="inner")
+    merged_df = merge_data(
+        df1=date_vaccinated, df2=merge_final, on="country", how="inner"
+    )
     merged_df = merged_df.rename(columns={"daily_vaccinations": "Vaccination"})
 
     # Visualization
